@@ -1,0 +1,47 @@
+.PageName {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2.5rem;
+}
+
+.NavBarList, .SubMenuList{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.NavBarListItem, .SubMenuItem{
+    text-decoration: none;
+    border: 1px solid red;
+    padding: 0.5rem 2rem;
+    color: black;
+    box-shadow: -5px 3px 3px red;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+}
+
+.NavBarListItem:hover, .SubMenuItem:hover{
+    box-shadow: none;
+}
+
+.SubMenuBar{
+    margin-top: 1.5rem;
+}
+
+.SubMenuList{
+    justify-content:flex-start; 
+}
+
+.SubMenuItem {
+    margin-right: 2rem;
+    font-size: 0.75rem;
+}
+
+.Selected{
+    background-color: red;
+    color: white;
+    box-shadow: none;
+}
