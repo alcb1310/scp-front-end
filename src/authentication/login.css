@@ -1,0 +1,11 @@
+.buttonRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.danger{
+    color: red;
+    font-size: 0.85rem;
+    text-align: right;
+}

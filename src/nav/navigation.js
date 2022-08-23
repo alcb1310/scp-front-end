@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navigation.css";
+import { useSelector } from "react-redux";
 
 function Navigation() {
   const [selectedMenu, setSelectedMenu] = useState("Inicio");
   const opciones = {
     Inicio: [],
     Transacciones: ["obra", "presupuesto", "factura", "cierre mes"],
-    Reportes: [],
+    Reportes: ["cuadre"],
     Parametros: ["partida", "proveedor"],
     Usuario: ["crear", "cambiar contraseña", "resetear contraseña"],
   };
+  const token = useSelector((state) => state.token.value);
 
   const handleClick = (idx) => {
     switch (idx) {
@@ -52,7 +54,7 @@ function Navigation() {
     </>
   );
 
-  return (
+  const displayMenu = token ? (
     <header>
       <h1 className="PageName">Sistema Control Presupuestario</h1>
       <nav className="NavBar">
@@ -116,7 +118,9 @@ function Navigation() {
       </nav>
       {opcionesEl.length > 0 ? subMenuInfo : ""}
     </header>
-  );
+  ) : null
+
+  return (<>{displayMenu}</>);
 }
 
 export default Navigation;
