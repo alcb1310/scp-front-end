@@ -1,0 +1,35 @@
+$font-color: #006699;
+$menu-accent-color: #FF0000;
+$selected-menu-text-color: #FFF;
+
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: $font-color
+}
+
+.pageTitle {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.subTitle{
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+footer{
+    margin-top: 2rem;
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    font-size: 0.7rem;
+    text-align: center;
+}

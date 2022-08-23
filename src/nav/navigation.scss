@@ -1,26 +1,31 @@
+@import "../App.scss";
+
+.NavBar {
+    margin-top: 3rem;
+}
+
 .PageName {
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 2.5rem;
 }
 
 .NavBarList, .SubMenuList{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     list-style: none;
 }
 
 .NavBarListItem, .SubMenuItem{
     text-decoration: none;
-    border: 1px solid red;
+    border: 1px solid $menu-accent-color;
     padding: 0.5rem 2rem;
-    color: black;
-    box-shadow: -5px 3px 3px red;
+    box-shadow: -5px 3px 3px $menu-accent-color;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1rem;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 2rem;
 }
 
 .NavBarListItem:hover, .SubMenuItem:hover{
@@ -41,7 +46,7 @@
 }
 
 .Selected{
-    background-color: red;
-    color: white;
+    background-color: $menu-accent-color;
+    color: $selected-menu-text-color;
     box-shadow: none;
 }

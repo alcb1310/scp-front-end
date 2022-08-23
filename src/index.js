@@ -13,6 +13,7 @@ import Navigation from "./nav/navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import Footer from "./nav/footer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -34,6 +35,7 @@ root.render(
           }
         />
       </Routes>
+      <Footer />
     </Provider>
   </BrowserRouter>
 );

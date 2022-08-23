@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { Row, Col, Form, InputGroup, Button } from "react-bootstrap";
-import "./login.css";
+import "./login.scss";
 
 import { save } from "../redux/token";
 
@@ -36,53 +36,61 @@ function Login() {
   const errorInfo = error ? error : null;
 
   return (
-    <>
-      <h1>Sistema Control Propietario</h1>
-      <h3>Login</h3>
+    <Row>
+      <Col md={{ span: 8, offset: 2 }}>
+        <h1 className="pageTitle">Sistema Control Presupuestario</h1>
+        <h3 className="subTitle">Ingrese al Sistema</h3>
 
-      <form onSubmit={handleSubmit}>
-        <Row>
-          <Col md={{ span: 6, offset: 3 }}>
-            <InputGroup size="sm">
-              <InputGroup.Text id="username">Usuario</InputGroup.Text>
-              <Form.Control
-                placeholder="username"
-                arialabel="username"
-                ariadescribedby="username"
-                value={username}
-                onChange={(e) => setUserName(e.target.value)}
-              />
-            </InputGroup>
-            {errorInfo ? <p className="danger">{errorInfo}</p> : null}
-          </Col>
-        </Row>
-        <Row>
-          <Col md={{ span: 6, offset: 3 }}>
-            <InputGroup size="sm">
-              <InputGroup.Text id="password">Contrase&ntilde;a</InputGroup.Text>
-              <Form.Control
-                placeholder="contraseña"
-                arialabel="contraseña"
-                ariadescribedby="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </InputGroup>
-          </Col>
-        </Row>
-        <Row className="mt-3">
-          <Col md={{ span: 6, offset: 3 }}>
-            <div className="buttonRow">
-              <Button variant="outline-secondary">Cancelar</Button>
-              <Button type="submit" variant="outline-primary" className="ms-2">
-                Ingresar
-              </Button>
-            </div>
-          </Col>
-        </Row>
-      </form>
-    </>
+        <form onSubmit={handleSubmit}>
+          <Row>
+            <Col md={{ span: 6, offset: 3 }}>
+              <InputGroup size="sm">
+                <InputGroup.Text id="username">Usuario</InputGroup.Text>
+                <Form.Control
+                  placeholder="username"
+                  arialabel="username"
+                  ariadescribedby="username"
+                  value={username}
+                  onChange={(e) => setUserName(e.target.value)}
+                />
+              </InputGroup>
+              {errorInfo ? <p className="danger">{errorInfo}</p> : null}
+            </Col>
+          </Row>
+          <Row>
+            <Col md={{ span: 6, offset: 3 }}>
+              <InputGroup size="sm">
+                <InputGroup.Text id="password">
+                  Contrase&ntilde;a
+                </InputGroup.Text>
+                <Form.Control
+                  placeholder="contraseña"
+                  arialabel="contraseña"
+                  ariadescribedby="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </InputGroup>
+            </Col>
+          </Row>
+          <Row className="mt-3">
+            <Col md={{ span: 6, offset: 3 }}>
+              <div className="buttonRow">
+                <Button variant="outline-secondary">Cancelar</Button>
+                <Button
+                  type="submit"
+                  variant="outline-primary"
+                  className="ms-2"
+                >
+                  Ingresar
+                </Button>
+              </div>
+            </Col>
+          </Row>
+        </form>
+      </Col>
+    </Row>
   );
 }
 
