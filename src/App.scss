@@ -1,3 +1,4 @@
+
 $font-color: #006699;
 $menu-accent-color: #FF0000;
 $selected-menu-text-color: #FFF;
@@ -27,7 +28,7 @@ $selected-menu-text-color: #FFF;
 
 footer{
     margin-top: 2rem;
-    background-color: black;
+    background-color: $font-color;
     color: white;
     padding: 1rem;
     font-size: 0.7rem;
