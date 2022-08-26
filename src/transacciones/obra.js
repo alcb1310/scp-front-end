@@ -21,13 +21,12 @@ function Obra() {
   const [show, setShow] = useState(false);
   const [selectedUuid, setSelectedUuid] = useState("");
   const [selectedObra, setSelectedObra] = useState({
-    nombre: null,
-    casas: null,
-    activo: null,
-    uuid: null,
-    id: null,
+    nombre: "",
+    casas: "",
+    activo: false,
+    uuid: "",
   });
-  const [screenUpdate, setScreenUpdate] = useState(true)
+  const [screenUpdate, setScreenUpdate] = useState(true);
 
   const config = useMemo(() => {
     return {
@@ -47,11 +46,10 @@ function Obra() {
       .then((data) => setSelectedObra(data.data))
       .catch(() => {
         setSelectedObra({
-          nombre: null,
-          casas: null,
-          activo: null,
-          uuid: null,
-          id: null,
+          nombre: "",
+          casas: "",
+          activo: false,
+          uuid: "",
         });
       });
   }, [selectedUuid, config, url]);
@@ -85,30 +83,29 @@ function Obra() {
           config
         )
         .then((data) => {
-            console.log(data)
+          console.log(data);
         })
-        .finally(()=> {
-            setScreenUpdate(prev => !prev)
-            setShow(prev => !prev)
+        .finally(() => {
+          setScreenUpdate((prev) => !prev);
         });
     } else {
-        axios
-          .post(
-            `${url}/api/obras`,
-            {
-              nombre: selectedObra.nombre,
-              casas: selectedObra.casas,
-              activo: selectedObra.activo,
-            },
-            config
-          )
-          .then((data) => setSelectedUuid(data.data.uuid))
-          .finally(()=> {
-            setScreenUpdate(prev => !prev)
-            setShow(prev => !prev)
-          });
+      console.log(selectedObra);
+      axios
+        .post(
+          `${url}/api/obras`,
+          {
+            nombre: selectedObra.nombre,
+            casas: selectedObra.casas,
+            activo: selectedObra.activo ? selectedObra.activo : false,
+          },
+          config
+        )
+        .then((data) => setSelectedUuid(data.data.uuid))
+        .finally(() => {
+          setScreenUpdate((prev) => !prev);
+        });
     }
-    setScreenUpdate(prev => !prev)
+    setScreenUpdate((prev) => !prev);
   }
 
   function handleChange(event) {
