@@ -17,7 +17,6 @@ import {
 function Obra() {
   const token = useSelector((state) => state.token.value);
   const [obras, setObras] = useState([]);
-  const url = process.env.REACT_APP_API_SERVER;
   const [show, setShow] = useState(false);
   const [selectedUuid, setSelectedUuid] = useState("");
   const [selectedObra, setSelectedObra] = useState({
@@ -27,7 +26,8 @@ function Obra() {
     uuid: "",
   });
   const [screenUpdate, setScreenUpdate] = useState(true);
-
+  
+  const url = process.env.REACT_APP_API_SERVER;
   const config = useMemo(() => {
     return {
       headers: {
@@ -162,7 +162,7 @@ function Obra() {
       <Modal show={show} onHide={handleModalClick}>
         <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal Heading</Modal.Title>
+            <Modal.Title>Obra {selectedObra.nombre}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <InputGroup size="sm">

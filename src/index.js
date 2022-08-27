@@ -14,6 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Footer from "./nav/footer";
+import Partida from "./parametros/partida";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -26,6 +27,7 @@ root.render(
         <Route exact path="/login" element={<Login />} />
         <Route path="/transacciones/presupuesto" element={<Presupuesto />} />
         <Route path="/transacciones/obra" element={<Obra />} />
+        <Route path="parametros/partida" element={<Partida />} />
         <Route
           path="*"
           element={
