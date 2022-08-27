@@ -10,6 +10,10 @@ $selected-menu-text-color: #FFF;
     color: $font-color
 }
 
+a{
+    text-decoration: none;
+}
+
 .pageTitle {
     text-align: center;
     margin-top: 2rem;
@@ -24,6 +28,16 @@ $selected-menu-text-color: #FFF;
     letter-spacing: 1px;
     text-align: center;
     margin-bottom: 2rem;
+}
+
+.topRow{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomNavigation{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .modalTitle{

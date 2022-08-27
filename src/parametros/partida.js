@@ -14,6 +14,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
+import Pagination from "../components/pagination";
+
 function Partida() {
   const token = useSelector((state) => state.token.value);
   const [partidas, setPartidas] = useState([]);
@@ -28,17 +30,22 @@ function Partida() {
   const [show, setShow] = useState(false);
   const [selectedPartida, setSelectedPartida] = useState({});
   const [parentPartidas, setParentPartidas] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pagin, setPagin] = useState({});
 
   const url = process.env.REACT_APP_API_SERVER;
 
   useEffect(() => {
     axios
-      .get(`${url}/api/partidas`, config)
-      .then((data) => setPartidas(data.data));
+      .get(`${url}/api/partidas?limit=10&page=${page}`, config)
+      .then((data) => {
+        setPartidas(data.data.data);
+        setPagin(data.data.pagination);
+      });
     axios
       .get(`${url}/api/partidas?acumula=true&sortby=nombre`, config)
-      .then((data) => setParentPartidas(data.data));
-  }, [refresh, config, url]);
+      .then((data) => setParentPartidas(data.data.data));
+  }, [refresh, config, url, page]);
 
   function handleCrear(e) {
     e.preventDefault();
@@ -55,6 +62,11 @@ function Partida() {
 
   function handleModalClick() {
     setShow((prev) => !prev);
+  }
+
+  function changePage(pageNumber){
+    console.log(`changing to ${pageNumber}`);
+    setPage(pageNumber)
   }
 
   function handleChange(event) {
@@ -82,16 +94,16 @@ function Partida() {
         )
         .then((data) => console.log(data))
         .finally(() => {
-          setRefresh(prev => !prev)
-          setShow(prev => !prev)
+          setRefresh((prev) => !prev);
+          setShow((prev) => !prev);
         });
     } else {
       axios
         .post(`${url}/api/partidas`, selectedPartida, config)
         .then((data) => console.log(data))
         .finally(() => {
-          setRefresh(prev => !prev)
-          setShow(prev => !prev)
+          setRefresh((prev) => !prev);
+          setShow((prev) => !prev);
         });
     }
     setRefresh((prev) => !prev);
@@ -132,11 +144,20 @@ function Partida() {
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
           <h3 className="pageTitle">Partida</h3>
-          <div align="right">
-            <Button variant="outline-primary" onClick={handleCrear}>
-              Crear
-            </Button>
+          <div className="topRow">
+            <div>
+              <Pagination data={pagin} change={changePage} />
+            </div>
+            <div>
+              <Button variant="outline-primary" onClick={handleCrear} size="md">
+                Crear
+              </Button>
+            </div>
           </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col md={{ span: 8, offset: 2 }}>
           <Table hover size="sm">
             <thead>
               <tr>
@@ -149,6 +170,13 @@ function Partida() {
             </thead>
             <tbody>{partidasEl}</tbody>
           </Table>
+        </Col>
+      </Row>
+      <Row>
+        <Col md={{span:8, offset:2}}>
+          <div className="bottomNavigation">
+            <Pagination data={pagin} change={changePage} />
+          </div>
         </Col>
       </Row>
       <Modal show={show} onHide={handleModalClick}>
