@@ -20,6 +20,7 @@ function Partida() {
   const token = useSelector((state) => state.token.value);
   const [partidas, setPartidas] = useState([]);
   const [refresh, setRefresh] = useState(true);
+  const [search, setSearch] = useState("")
   const config = useMemo(() => {
     return {
       headers: {
@@ -37,7 +38,7 @@ function Partida() {
 
   useEffect(() => {
     axios
-      .get(`${url}/api/partidas?limit=10&page=${page}`, config)
+      .get(`${url}/api/partidas?limit=10&page=${page}&search=${search}`, config)
       .then((data) => {
         setPartidas(data.data.data);
         setPagin(data.data.pagination);
@@ -45,7 +46,7 @@ function Partida() {
     axios
       .get(`${url}/api/partidas?acumula=true&sortby=nombre`, config)
       .then((data) => setParentPartidas(data.data.data));
-  }, [refresh, config, url, page]);
+  }, [refresh, config, url, page, search]);
 
   function handleCrear(e) {
     e.preventDefault();
@@ -139,6 +140,10 @@ function Partida() {
     );
   });
 
+  function handleSearchChange(event) {
+    setSearch(event.target.value.toUpperCase())
+  }
+
   return (
     <>
       <Row>
@@ -147,6 +152,15 @@ function Partida() {
           <div className="topRow">
             <div>
               <Pagination data={pagin} change={changePage} />
+            </div>
+            <div>
+              <Form>
+                <Form.Control
+                  placeholder="Búsqueda"
+                  value={search}
+                  onChange={handleSearchChange}
+                />
+              </Form>
             </div>
             <div>
               <Button variant="outline-primary" onClick={handleCrear} size="md">
