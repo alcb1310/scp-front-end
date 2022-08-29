@@ -44,6 +44,12 @@ a{
     text-transform: uppercase;
 }
 
+.danger{
+    color: $menu-accent-color;
+    font-size: 0.85rem;
+    text-align: right;
+}
+
 footer{
     margin-top: 2rem;
     background-color: $font-color;

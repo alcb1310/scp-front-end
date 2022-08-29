@@ -66,7 +66,6 @@ function Partida() {
   }
 
   function changePage(pageNumber){
-    console.log(`changing to ${pageNumber}`);
     setPage(pageNumber)
   }
 

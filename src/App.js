@@ -11,6 +11,7 @@ import Navigation from "./nav/navigation";
 import Footer from "./nav/footer";
 import Partida from "./parametros/partida";
 import Main from "./main";
+import Proveedor from "./parametros/proveedor";
 
 function App() {
   const [token, setToken] = useState(store.getState().token.value);
@@ -35,7 +36,8 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/transacciones/presupuesto" element={<Presupuesto />} />
           <Route path="/transacciones/obra" element={<Obra />} />
-          <Route path="parametros/partida" element={<Partida />} />
+          <Route path="/parametros/partida" element={<Partida />} />
+          <Route path="/parametros/proveedor" element={<Proveedor />} />
           <Route
             path="*"
             element={
