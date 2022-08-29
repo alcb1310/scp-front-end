@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { Row, Col, Form, InputGroup, Button } from "react-bootstrap";
@@ -8,9 +7,8 @@ import "./login.scss";
 
 import { save } from "../redux/token";
 
-function Login() {
+function Login(props) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -25,8 +23,8 @@ function Login() {
         password: password,
       });
       dispatch(save(data.data.access_token));
+      props.saveToken(data.data.access_token)
       setError("");
-      navigate("/");
     } catch (errorInfo) {
       console.log(errorInfo);
       setError(errorInfo.response.data.detail);

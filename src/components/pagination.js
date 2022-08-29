@@ -1,4 +1,4 @@
-import { BreadcrumbItem, Pagination } from "react-bootstrap";
+import { Pagination } from "react-bootstrap";
 
 function PaginationLogic(props) {
   const { current_page, max_pages, next_page, prev_page } = props.data;
@@ -30,9 +30,9 @@ function PaginationLogic(props) {
   }
 
 
-  const navItems = navOptions.map(index => {
+  const navItems = navOptions.map((index, idx) => {
     return (
-        <Pagination.Item onClick={() => handleClick(index)} active={current_page == index ? true : false } >{index}</Pagination.Item>
+        <Pagination.Item key={idx} onClick={() => handleClick(index)} active={current_page === index ? true : false } >{index}</Pagination.Item>
     )
   })
 
