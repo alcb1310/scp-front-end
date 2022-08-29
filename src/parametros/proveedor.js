@@ -53,7 +53,6 @@ function Proveedor() {
   }
 
   function handleModalClick() {
-    console.log("handleModalClick");
     setError({})
     setShow((prev) => !prev);
   }
@@ -89,7 +88,6 @@ function Proveedor() {
           handleModalClick();
         })
         .catch((error) => {
-            console.log(error);
           const errorData = error.response.data.detail;
           const errorArray = errorData.split(", ").map((data) => {
             const index = data.indexOf(":");
