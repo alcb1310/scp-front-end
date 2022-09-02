@@ -37,9 +37,9 @@ function Presupuesto() {
   const url = `${server}/api/presupuestos`;
 
   useEffect(() => {
-    console.log("refreshing")
-    axios.get(`${url}?acumula=false`, config).then((data) => {
+    axios.get(`${url}?acumula=false&limit=10&page=${page}`, config).then((data) => {
       setPresupuestos(data.data.data);
+      setPagin(data.data.pagination);
     });
   }, [refresh, search, page, url, token, config]);
 
@@ -124,7 +124,7 @@ function Presupuesto() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    
+
     const presupuestoToSave = {
       obra_id: selectedPresupuesto.obra_id,
       partida_id: selectedPresupuesto.partida_id,
@@ -134,15 +134,26 @@ function Presupuesto() {
 
     if (selectedPresupuesto.uuid) {
       // updating
-      axios.put(`${url}/${selectedPresupuesto.uuid}`, presupuestoToSave, config).then(data => console.log(data))
+      axios
+        .put(`${url}/${selectedPresupuesto.uuid}`, presupuestoToSave, config)
+        // .then((data) => console.log(data))
+        .finally(() => {
+          setRefresh((prev) => !prev);
+          handleModalClick();
+        });
     } else {
       // creating
       axios
         .post(url, presupuestoToSave, config)
-        .then((data) => console.log(data));
+        // .then((data) => console.log(data))
+        .catch(error => {
+          console.log(error);
+        })
+        .finally(() => {
+          setRefresh((prev) => !prev);
+          handleModalClick();
+        });
     }
-    handleModalClick();
-    setRefresh((prev) => !prev);
   }
 
   const obrasEl = obras.map((obra) => {
@@ -196,7 +207,7 @@ function Presupuesto() {
             <div>
               <Pagination data={pagin} change={changePage} />
             </div>
-            <div>
+            {/* <div>
               <Form>
                 <Form.Control
                   placeholder="Búsqueda"
@@ -204,7 +215,7 @@ function Presupuesto() {
                   onChange={handleSearchChange}
                 />
               </Form>
-            </div>
+            </div> */}
             <div>
               <Button variant="outline-primary" onClick={handleCrear} size="md">
                 Crear
@@ -241,6 +252,13 @@ function Presupuesto() {
             </thead>
             <tbody>{presupuestosEl}</tbody>
           </Table>
+        </Col>
+      </Row>
+      <Row>
+        <Col md={{span:10, offset:1}}>
+          <div className="bottomNavigation">
+            <Pagination data={pagin} change={changePage} />
+          </div>
         </Col>
       </Row>
       <Modal show={show}>
