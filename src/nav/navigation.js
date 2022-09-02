@@ -9,7 +9,7 @@ function Navigation() {
   const opciones = {
     Inicio: [],
     Transacciones: ["obra", "presupuesto", "factura", "cierre mes"],
-    Reportes: ["cuadre"],
+    Reportes: ["cuadre", "control actual"],
     Parametros: ["partida", "proveedor"],
     Usuario: ["crear", "cambiar contraseña", "resetear contraseña"],
   };
@@ -35,10 +35,14 @@ function Navigation() {
   };
 
   const opcionesEl = opciones[selectedMenu].map((subMenuItem, index) => {
+    let selectedMenuItem = subMenuItem.toLowerCase()
+    if (subMenuItem === "control actual"){
+      selectedMenuItem = "actual"
+    }
     return (
       <li key={index}>
         <NavLink
-          to={`../${selectedMenu.toLowerCase()}/${subMenuItem.toLowerCase()}`}
+          to={`../${selectedMenu.toLowerCase()}/${selectedMenuItem}`}
           className={"SubMenuItem"}
         >
           {subMenuItem}
