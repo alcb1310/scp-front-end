@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./navigation.css";
+import "../App.scss";
+import "./navigation.scss"
+import { useSelector } from "react-redux";
 
 function Navigation() {
   const [selectedMenu, setSelectedMenu] = useState("Inicio");
   const opciones = {
     Inicio: [],
     Transacciones: ["obra", "presupuesto", "factura", "cierre mes"],
-    Reportes: [],
+    Reportes: ["cuadre", "control actual"],
     Parametros: ["partida", "proveedor"],
     Usuario: ["crear", "cambiar contraseña", "resetear contraseña"],
   };
+  const token = useSelector((state) => state.token.value);
 
   const handleClick = (idx) => {
     switch (idx) {
@@ -32,10 +35,14 @@ function Navigation() {
   };
 
   const opcionesEl = opciones[selectedMenu].map((subMenuItem, index) => {
+    let selectedMenuItem = subMenuItem.toLowerCase()
+    if (subMenuItem === "control actual"){
+      selectedMenuItem = "actual"
+    }
     return (
       <li key={index}>
         <NavLink
-          to={`../${selectedMenu.toLowerCase()}/${subMenuItem.toLowerCase()}`}
+          to={`../${selectedMenu.toLowerCase()}/${selectedMenuItem}`}
           className={"SubMenuItem"}
         >
           {subMenuItem}
@@ -52,7 +59,7 @@ function Navigation() {
     </>
   );
 
-  return (
+  const displayMenu = token ? (
     <header>
       <h1 className="PageName">Sistema Control Presupuestario</h1>
       <nav className="NavBar">
@@ -116,7 +123,9 @@ function Navigation() {
       </nav>
       {opcionesEl.length > 0 ? subMenuInfo : ""}
     </header>
-  );
+  ) : null
+
+  return (<>{displayMenu}</>);
 }
 
 export default Navigation;
