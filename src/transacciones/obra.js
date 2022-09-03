@@ -37,7 +37,7 @@ function Obra() {
   }, [token]);
 
   useEffect(() => {
-    axios.get(`${url}/api/obras`, config).then((data) => setObras(data.data));
+    axios.get(`${url}/api/obras`, config).then((data) => setObras(data.data.data));
   }, [url, token, config, screenUpdate]);
 
   useEffect(() => {

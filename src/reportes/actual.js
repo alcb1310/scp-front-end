@@ -22,7 +22,7 @@ function Actual() {
   useEffect(() => {
     axios
       .get(`${server}/api/obras?activo=true`, config)
-      .then((result) => setObras(result.data));
+      .then((result) => setObras(result.data.data));
   }, [server, config]);
 
   function handleSubmit(event) {

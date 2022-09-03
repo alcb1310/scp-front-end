@@ -13,6 +13,7 @@ import Partida from "./parametros/partida";
 import Main from "./main";
 import Proveedor from "./parametros/proveedor";
 import Actual from "./reportes/actual";
+import Factura from "./transacciones/factura";
 
 function App() {
   const [token, setToken] = useState(store.getState().token.value);
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/transacciones/presupuesto" element={<Presupuesto />} />
           <Route path="/transacciones/obra" element={<Obra />} />
+          <Route path="/transacciones/factura" element={<Factura />} />
           <Route path="/parametros/partida" element={<Partida />} />
           <Route path="/parametros/proveedor" element={<Proveedor />} />
           <Route path="/reportes/actual" element={<Actual />} />

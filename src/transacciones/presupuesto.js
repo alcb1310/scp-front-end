@@ -46,7 +46,7 @@ function Presupuesto() {
   useEffect(() => {
     // Promise.all(
     axios.get(`${server}/api/obras?activo=true`, config).then((data) => {
-      setObras(data.data);
+      setObras(data.data.data);
     });
     axios
       .get(`${server}/api/partidas?acumula=false&sortby=nombre`, config)
