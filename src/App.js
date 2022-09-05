@@ -14,6 +14,9 @@ import Main from "./main";
 import Proveedor from "./parametros/proveedor";
 import Actual from "./reportes/actual";
 import Factura from "./transacciones/factura";
+import Usuarios from "./transacciones/usuarios/usuarios";
+import ChangePassword from "./transacciones/usuarios/changepassword";
+import ResetPassword from "./transacciones/usuarios/resetpassword";
 
 function App() {
   const [token, setToken] = useState(store.getState().token.value);
@@ -42,6 +45,9 @@ function App() {
           <Route path="/parametros/partida" element={<Partida />} />
           <Route path="/parametros/proveedor" element={<Proveedor />} />
           <Route path="/reportes/actual" element={<Actual />} />
+          <Route path="/usuarios/usuarios" element={<Usuarios />} />
+          <Route path="/usuarios/change-password" element={<ChangePassword />} />
+          <Route path="/usuarios/reset-password" element={<ResetPassword />} />
           <Route
             path="*"
             element={

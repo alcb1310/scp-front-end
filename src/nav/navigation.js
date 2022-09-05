@@ -11,7 +11,7 @@ function Navigation() {
     Transacciones: ["obra", "presupuesto", "factura", "cierre mes"],
     Reportes: ["cuadre", "control actual"],
     Parametros: ["partida", "proveedor"],
-    Usuario: ["crear", "cambiar contraseña", "resetear contraseña"],
+    Usuarios: ["usuarios", "cambiar contraseña", "resetear contraseña"],
   };
   const token = useSelector((state) => state.token.value);
 
@@ -27,7 +27,7 @@ function Navigation() {
         setSelectedMenu("Parametros");
         break;
       case 5:
-        setSelectedMenu("Usuario");
+        setSelectedMenu("Usuarios");
         break;
       default:
         setSelectedMenu("Inicio");
@@ -38,7 +38,12 @@ function Navigation() {
     let selectedMenuItem = subMenuItem.toLowerCase()
     if (subMenuItem === "control actual"){
       selectedMenuItem = "actual"
+    } else if (subMenuItem === "cambiar contraseña"){
+      selectedMenuItem = "change-password"
+    } else if (subMenuItem === "resetear contraseña"){
+      selectedMenuItem = "reset-password"
     }
+
     return (
       <li key={index}>
         <NavLink
