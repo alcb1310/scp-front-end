@@ -14,9 +14,9 @@ import Main from "./main";
 import Proveedor from "./parametros/proveedor";
 import Actual from "./reportes/actual";
 import Factura from "./transacciones/factura";
-import Usuarios from "./transacciones/usuarios/usuarios";
-import ChangePassword from "./transacciones/usuarios/changepassword";
-import ResetPassword from "./transacciones/usuarios/resetpassword";
+import Usuarios from "./usuarios/usuarios";
+import ChangePassword from "./usuarios/changepassword";
+import ResetPassword from "./usuarios/resetpassword";
 
 function App() {
   const [token, setToken] = useState(store.getState().token.value);
